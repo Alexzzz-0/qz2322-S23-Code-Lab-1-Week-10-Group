@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI button3;
     public TextMeshProUGUI answers;
     [SerializeField] private TextMeshProUGUI beautiful;
-    [SerializeField] private TextMeshProUGUI reload;
 
     public ScriptableObjects object1;
     public ScriptableObjects object2;
@@ -69,16 +68,7 @@ public class GameManager : MonoBehaviour
         InitAllScriObject();
         
     }
-
-    private void Update()
-    {
-        //if press R, reload the scene
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            SceneManager.LoadScene(0);
-        }
-        
-    }
+    
 
     string qAString;
     private string qBString;
@@ -93,32 +83,37 @@ public class GameManager : MonoBehaviour
     //triggered by button
     public void choose()
     {
-        //write the organ in question & organ in answer's position into files
-        WriteIntoFile();
-        
-        //check the end state of the game
-        //generate the organs in the face now
-        questionIndex++;
-        if (questionIndex >= 6)
+        if (gameRun)
         {
-            //give an random position to the organs that have never been chosen
-            CheckNullFile();
+            //write the organ in question & organ in answer's position into files
+            WriteIntoFile();
+        
+            //check the end state of the game
+            //generate the organs in the face now
+            questionIndex++;
+        
+            if (questionIndex >= 6)
+            {
+                //give an random position to the organs that have never been chosen
+                CheckNullFile();
 
-            question.text = null;
-            beautiful.text = "You are so beautiful~";
-            reload.text = "Press R to restart";
+                question.text = null;
+                beautiful.text = "You are so beautiful~";
+                button1.text = "Restart";
+                button2.text = "Restart";
+                button3.text = "Restart";
             
+                //generate organs
+                GenerateOrganInFace();
+            
+                //turn gameRun to false
+                //so the scripts in the button cannot write more button text into answer column
+                gameRun = false;
+                return;
+            }
 
-            //generate organs
-            GenerateOrganInFace();
-            
-            //turn gameRun to false
-            //so the scripts in the button cannot write more button text into answer column
-            gameRun = false;
-            return;
+            DisplayNew();
         }
-
-        DisplayNew();
     }
 
     
@@ -385,24 +380,31 @@ public class GameManager : MonoBehaviour
     public float startY;
     public float gapX;
     public float gapY;
+    private float alignX;
 
     void GenerateOrganInFace()
     {
         //according to the position information in organ map
         //generate the organs in the face here
+        
+        //according to the width of all the organs
+        //adjust the starting position X
+        alignX = (OrganMap.Count - 3) * gapX/2;
+
         for (int i = 0; i < OrganMap.Count; i++)
         {
             for (int q = 0; q < OrganMap[i].Count; q++)
             {
                 string _name = OrganMap[i][q];
                 GameObject newObj = Instantiate(ScriDic[_name].organs);
+                //make the first and last line a slot lower
                 if (i == 0 || i == OrganMap.Count - 1)
                 {
-                    newObj.transform.position = new Vector3(startX + i * gapX, startY - gapY - gapY * q);
+                    newObj.transform.position = new Vector3(startX - alignX + i * gapX, startY - gapY - gapY * q);
                 }
                 else
                 {
-                    newObj.transform.position = new Vector3(startX + gapX * i, startY - gapY * q);
+                    newObj.transform.position = new Vector3(startX - alignX + gapX * i, startY - gapY * q);
                 }
             }
         }

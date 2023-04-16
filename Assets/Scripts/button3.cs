@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class button3 : MonoBehaviour
 {
@@ -10,11 +11,14 @@ public class button3 : MonoBehaviour
 
     public void WroteButton3()
     {
-        if (!GameManager._instance.gameRun)
+        if (GameManager._instance.gameRun)
         {
-            return;
+            answersFile.text += "--" + answer3.text;
+            GameManager._instance.choseAnswer = answer3.text;
         }
-        answersFile.text += "--" + answer3.text;
-        GameManager._instance.choseAnswer = answer3.text;
+        else
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 }
