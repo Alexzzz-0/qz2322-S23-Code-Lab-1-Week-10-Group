@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
@@ -66,8 +67,17 @@ public class GameManager : MonoBehaviour
         InitAllScriObject();
         
     }
-    
-  
+
+    private void Update()
+    {
+        //if press R, reload the scene
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(0);
+        }
+        
+    }
+
     string qAString;
     private string qBString;
     private int questionIndex = 0;
@@ -91,10 +101,8 @@ public class GameManager : MonoBehaviour
         {
             //give an random position to the organs that have never been chosen
             CheckNullFile();
-            
-            //display on the text
-            //TODO: delete this line if we have the generating function
-            question.text = "The end";
+
+            question.text = null;
 
             //generate organs
             GenerateOrganInFace();
@@ -379,7 +387,14 @@ public class GameManager : MonoBehaviour
             {
                 string _name = OrganMap[i][q];
                 GameObject newObj = Instantiate(ScriDic[_name].organs);
-                newObj.transform.position = new Vector3(startX + gapX * i, startY - gapY * q);
+                if (i == 0 || i == OrganMap.Count - 1)
+                {
+                    newObj.transform.position = new Vector3(startX + i * gapX, startY - gapY - gapY * q);
+                }
+                else
+                {
+                    newObj.transform.position = new Vector3(startX + gapX * i, startY - gapY * q);
+                }
             }
         }
     }

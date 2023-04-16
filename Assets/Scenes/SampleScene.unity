@@ -466,8 +466,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 154473809}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.02, y: -0.08, z: 0}
-  m_LocalScale: {x: 0.8059502, y: 0.8059502, z: 0.8059502}
+  m_LocalPosition: {x: 3.49, y: -0.23, z: 0}
+  m_LocalScale: {x: 1.26, y: 1.03, z: 1.3091378}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -517,10 +517,10 @@ MonoBehaviour:
   object8: {fileID: 11400000, guid: c219b0397485b0d4bb34af35f73a03f8, type: 2}
   choseAnswer: 
   gameRun: 1
-  startX: -3.5
-  startY: 2.6
+  startX: -3
+  startY: 3
   gapX: 3
-  gapY: 1.7
+  gapY: 2
 --- !u!4 &289715664
 Transform:
   m_ObjectHideFlags: 0
@@ -859,7 +859,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1312,7 +1312,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Let's start with--
+  m_text: 'Press R to reload
+
+
+    Let''s start with--'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1466,8 +1469,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1934527465}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.25, y: 3.04, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 3.65, y: 4.15, z: 0}
+  m_LocalScale: {x: 1.32, y: 1.52, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1766,6 +1769,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 83.99, y: 0.8}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
