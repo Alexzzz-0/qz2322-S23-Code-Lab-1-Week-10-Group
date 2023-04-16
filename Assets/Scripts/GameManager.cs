@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI button2;
     public TextMeshProUGUI button3;
     public TextMeshProUGUI answers;
+    [SerializeField] private TextMeshProUGUI beautiful;
+    [SerializeField] private TextMeshProUGUI reload;
 
     public ScriptableObjects object1;
     public ScriptableObjects object2;
@@ -103,6 +105,9 @@ public class GameManager : MonoBehaviour
             CheckNullFile();
 
             question.text = null;
+            beautiful.text = "You are so beautiful~";
+            reload.text = "Press R to restart";
+            
 
             //generate organs
             GenerateOrganInFace();
@@ -115,6 +120,10 @@ public class GameManager : MonoBehaviour
 
         DisplayNew();
     }
+
+    
+    
+        
 
     private int _listNum = 0;
     
