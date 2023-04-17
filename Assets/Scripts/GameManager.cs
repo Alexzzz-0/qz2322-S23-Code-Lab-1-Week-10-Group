@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI answers;
     [SerializeField] private TextMeshProUGUI beautiful;
 
+    [SerializeField] private GameObject face;
+
     public ScriptableObjects object1;
     public ScriptableObjects object2;
     public ScriptableObjects object3;
@@ -36,6 +38,8 @@ public class GameManager : MonoBehaviour
     public static GameManager _instance;
 
     public bool gameRun = true;
+
+    public float mulAmt;
 
     
     //an array to hold all the question B blanks (location possibility)
@@ -408,6 +412,9 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+        
+        //adjust face's size
+        face.transform.localScale += new Vector3((OrganMap.Count - 2) * mulAmt, 0, 0);
     }
     
 }
